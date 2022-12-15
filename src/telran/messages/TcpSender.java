@@ -6,7 +6,7 @@ public class TcpSender implements Sender {
 
 	@Override
 	public void send(InputOutput io, String text) {
-		String ipAddress = io.readPredicate("Enter IP address", text, TcpSender::ipV4Predicate);
+		String ipAddress = io.readPredicate("Enter IP address", "Wrong IP addres", TcpSender::ipV4Predicate);
 		int port = io.readInt("Enter port number", "Wrong port number", 1024, 49151);
 		System.out.printf("text '%s' has been sent to %s:%d\n",text, ipAddress, port);
 
