@@ -3,6 +3,7 @@ package telran.annotation.examples;
 import java.lang.reflect.*;
 
 import telran.annotation.*;
+import telran.validation.constraints.Pattern;
 
 public class AnnotationsProcessor {
 static public Long getIdValue(Object obj) throws Exception{
