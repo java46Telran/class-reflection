@@ -10,7 +10,7 @@ import java.lang.annotation.Annotation;
 public class Validator {
 	/**
 	 * validates the given object against the constraints in the package
-	 * telran.annotation.validation.constraints
+	 * telran.validation.constraints
 	 * 
 	 * @param obj
 	 * @return list constraint violation messages or empty list if no violations
@@ -47,11 +47,7 @@ public class Validator {
 
 		}
 		String strValue = value.toString();
-		if (value instanceof String) {
-			return stringMinMaxValidation(field, annotation, strValue, isMax);
-		} else {
-
-		}
+		
 		return value instanceof String ? stringMinMaxValidation(field, annotation, strValue, isMax)
 				: numberMinMaxValidation(field, annotation, strValue, isMax);
 
@@ -105,11 +101,12 @@ public class Validator {
 		return maxMinValidation(field, annotation, obj, false);
 	}
 
-	static String patern(Field field, Object obj) {
-		Pattern paternAnnotation = field.getAnnotation(Pattern.class);
-		String res = paternAnnotation.message();
+	static String pattern(Field field, Object obj) {
+		Pattern patternAnnotation = field.getAnnotation(Pattern.class);
+		
+		String res = patternAnnotation.message();
 		try {
-			res = ((String) field.get(obj)).matches(paternAnnotation.value()) ? "" : paternAnnotation.message();
+			res = ((String) field.get(obj)).matches(patternAnnotation.value()) ? "" : patternAnnotation.message();
 		} catch (Exception e) {
 			res = "Wrong annotation with exception " + e.getMessage();
 		}
